@@ -12,6 +12,7 @@ namespace MobileShopping.Entity
         [Required]
         public string BrandName { get; set; }
         [Key]
+        [Required]
         public int Id { get; set; }
         [Required]
         public string MobileModel { get; set; }

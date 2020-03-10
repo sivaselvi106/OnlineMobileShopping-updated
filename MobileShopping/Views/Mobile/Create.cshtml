@@ -1,0 +1,109 @@
+﻿@model MobileShopping.Models.MobileViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm("Create", "Mobile", FormMethod.Post))
+{
+    @*@Html.HiddenFor(Model => Model.Id)*@
+    <table align="center">
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.BrandName, "Brand name")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.BrandName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.MobileModel, "Model")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.MobileModel)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Processor, "Processor")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Processor)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.RAM, "RAM")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.RAM)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Storage, "Storage")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Storage)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.BatteryCapacity, "Battery")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.BatteryCapacity)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Color, "Color")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Color)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Price, "Price")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Price)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Slimness, "Slimness")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Slimness)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.Pixel, "Pixel")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.Pixel)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(Model => Model.DisplaySize, "Display Size")
+            </td>
+            <td>
+                @Html.TextBoxFor(Model => Model.DisplaySize)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Submit"/>
+            </td>
+            <td>
+                <a href="~/Mobile">Back</a>
+            </td>
+        </tr>
+    </table>
+}
+

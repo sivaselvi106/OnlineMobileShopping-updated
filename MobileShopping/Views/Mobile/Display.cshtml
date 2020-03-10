@@ -1,0 +1,52 @@
+﻿@model IEnumerable<MobileShopping.Entity.Mobile>
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+@Html.ActionLink("Create new mobile", "Create")
+<br />
+@if (TempData["Message"] != null)
+{
+    @Html.Label((string)TempData["Message"])
+}
+<table border="1">
+    <tr>
+        <th>@Html.Label("Brand Name")</th>
+        <th>@Html.Label("Model")</th>
+        <th>@Html.Label("BatteryCapacity")</th>
+        <th>@Html.Label("DisplaySize")</th>
+        <th>@Html.Label("Pixel")</th>
+        <th>@Html.Label("Processor")</th>
+        <th>@Html.Label("RAM")</th>
+        <th>@Html.Label("Slimness")</th>
+        <th>@Html.Label("Storage")</th>
+        <th>@Html.Label("Color")</th>
+        <th>@Html.Label("Price")</th>
+        <th>@Html.Label("Action")</th>
+    </tr>
+    @foreach (var mobile in Model)
+    {
+<tr>
+    <td>@mobile.BrandName</td>
+    <td>@mobile.MobileModel</td>
+    <td>@mobile.BatteryCapacity</td>
+    <td>@mobile.DisplaySize</td>
+    <td>@mobile.Pixel</td>
+    <td>@mobile.Processor</td>
+    <td>@mobile.RAM</td>
+    <td>@mobile.Slimness</td>
+    <td>@mobile.Storage</td>
+    <td>@mobile.Color</td>
+    <td>@mobile.Price</td>
+    <td>
+        @Html.ActionLink("Edit /", "Edit")
+        @Html.ActionLink("Delete", "Delete")
+    </td>
+</tr>
+    }
+</table>
+
+
+

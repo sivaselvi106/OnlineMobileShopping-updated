@@ -1,0 +1,22 @@
+﻿@model MobileShopping.Models.LoginModel
+
+@{
+    ViewBag.Title = "Login";
+}
+<link href="~/Content/UserStyleSheet.css" rel="stylesheet" />
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+<div class="LoginPage">
+    <img src="~/Content/icons8-account-30.png" class="loginImage" />
+    <h1 class="LoginTitle">Login Here</h1>
+    <div class="LblLogin">@Html.LabelFor(model => model.MailId)</div>
+    <div class="TxtLogin">@Html.TextBoxFor(model => model.MailId)</div>
+    <div class="ValidateLogin">@Html.ValidationMessageFor(model => model.MailId)</div>
+    <div class="LblLogin">@Html.LabelFor(model => model.Password)</div>
+    <div class="TxtLogin">@Html.PasswordFor(model => model.Password, new { @maxlength = "16" })</div>
+    <div class="ValidateLogin">@Html.ValidationMessageFor(model => model.Password)</div>
+    <div class="Submit"><input type="submit" value="Login" /></div>
+    <div class="ForgotPassword">@Html.ActionLink("Forgot Password?", "SignUp", "Account", null, new { @class = "Link" })</div>
+    <div class="RegisterUser">@Html.ActionLink("New User? Register", "SignUp", "Account",null,new { @class = "Link"})</div>
+</div>
+}

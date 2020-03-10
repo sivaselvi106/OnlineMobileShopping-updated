@@ -1,0 +1,29 @@
+﻿@model MobileShopping.Models.SignUpModel
+
+@{
+    ViewBag.Title = "DisplayUsers";
+}
+
+@Html.ActionLink("Display users", "Display")
+
+<div class="displayUsers">
+    <h2>User details</h2><hr />
+    <dl class="displayTable" align="center">
+        <dt> @Html.DisplayNameFor(model => model.UserName)</dt>
+        <dd>@Html.DisplayFor(model => model.UserName)</dd>
+        <dt> @Html.DisplayNameFor(model => model.MailId)</dt>
+        <dd>@Html.DisplayFor(model => model.MailId)</dd>
+        <dt> @Html.DisplayNameFor(model => model.Gender)</dt>
+        <dd>@Html.DisplayFor(model => model.Gender)</dd>
+        <dt> @Html.DisplayNameFor(model => model.Age)</dt>
+        <dd>@Html.DisplayFor(model => model.Age)</dd>
+        <dt> @Html.DisplayNameFor(model => model.MobileNo)</dt>
+        <dd>@Html.DisplayFor(model => model.MobileNo)</dd>
+        <dt> @Html.DisplayNameFor(model => model.City)</dt>
+        <dd>@Html.DisplayFor(model => model.City)</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit","EditUser","Account") |
+    @Html.ActionLink("Delete","DeleteUser","Account")
+</p>

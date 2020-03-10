@@ -1,0 +1,168 @@
+﻿.nav-bar-list {
+    background-color: bisque;
+    height: 8%;
+    color: black;
+    overflow: hidden;
+    border: none;
+    list-style-type: none;
+}
+
+.list {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+}
+
+    .list:hover {
+        background-color: skyblue;
+    }
+
+.DisplayAction {
+    float: left;
+    text-decoration: none;
+}
+
+.actions {
+    text-decoration: none;
+}
+
+.Link {
+    text-decoration: none;
+    line-height: 5%;
+    color: red;
+    padding-left: 35%;
+    padding-bottom: 25%;
+    margin-top: 50%;
+}
+
+    .Link:hover {
+        color: #ffc107;
+    }
+
+.Section {
+    margin: 0;
+    padding: 0;
+    background: url(mobile.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+}
+
+.LoginPage {
+    width: 30%;
+    height: 70%;
+    background: rgba(245,245,245,0.5);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+}
+
+.loginImage {
+    width: 15%;
+    height: 20%;
+    border-radius: 50%;
+    position: absolute;
+    top: -50px;
+    margin-left: 45%;
+    margin-top: 5%;
+    background-color: #fff;
+}
+
+.LoginTitle {
+    margin: 0%;
+    padding: 13% 5%;
+    text-align: center;
+    color: rgb(3,77,162);
+}
+
+.LblLogin {
+    margin: 3%;
+    padding: 0%;
+    padding-left: 5%;
+    font-weight: bold;
+}
+
+.TxtLogin {
+    width: 100%;
+    margin-bottom: 5%;
+}
+
+.LoginPage input[type="text"], .LoginPage input[type="password"] {
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    height: 10%;
+    color: #fff;
+}
+
+    .LoginPage input[type="text"], .LoginPage input[type="password"] :active {
+        border: none;
+        width: 100%;
+        border-bottom: 1px solid #fff;
+    }
+
+.LoginPage input[type="submit"] {
+    border: none;
+    outline: none;
+    height: 7%;
+    background: rgb(255,228,196);
+    color: #000;
+    font-size: 18px;
+    border-radius: 3%;
+    width: 100%;
+}
+
+    .LoginPage input[type="submit"]:hover {
+        cursor: pointer;
+        background: green;
+        color: #fff;
+    }
+
+.ValidateLogin {
+    color: red;
+}
+
+.ForgotPassword, .RegisterUser {
+    padding: 3%;
+}
+
+.SignUpPage {
+    margin-top: 3%;
+}
+
+.SignUpTble th, td {
+    padding: 1%;
+}
+
+.LblSignUp {
+    font-weight: bold;
+}
+
+.TxtSignUp {
+    border: none;
+    width: 100%;
+    background-color: rgb(255,228,196);
+    padding: 3%;
+}
+
+.TxtSignUpGender {
+    color: blue;
+    background-color: rgb(255,228,196);
+}
+
+.SignUpBtn {
+    padding-right: 10%;
+    color: darkblue;
+    background-color: orange;
+}
+
+.SignUpBtn:hover {
+        background-color: forestgreen;
+        padding-right: 10%;
+    }

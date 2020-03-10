@@ -1,0 +1,36 @@
+﻿@model IEnumerable<MobileShopping.Entity.Account>
+
+<p>
+    @Html.ActionLink("Display", "UserDetails")
+</p>
+@*@if(TempData["Message"] != null)
+{
+    @Html.Label((string)TempData["Message"]);
+}
+<br/>*@
+<table>
+    <tr>
+    <th> @Html.DisplayNameFor(model => model.UserName)</th>
+    <th> @Html.DisplayNameFor(model => model.MailId)</th>
+    <th> @Html.DisplayNameFor(model => model.Gender)</th>
+    <th> @Html.DisplayNameFor(model => model.Age)</th>
+    <th> @Html.DisplayNameFor(model => model.MobileNo)</th>
+    <th> @Html.DisplayNameFor(model => model.City)</th>
+    </tr>
+    @foreach(var user in Model)
+    {
+    <tr>
+    <td>@Html.DisplayFor(model => user.UserName)</td>
+    <td>@Html.DisplayFor(model => user.MailId)</td>
+    <td>@Html.DisplayFor(model => user.Gender)</td>
+    <td>@Html.DisplayFor(model => user.Age)</td>
+    <td>@Html.DisplayFor(model => user.MobileNo)</td>
+    <td>@Html.DisplayFor(model => user.City)</td>
+    <td>
+        @Html.ActionLink("Edit", "EditUser") |
+        @Html.ActionLink("Delete", "DeleteUser")|
+        @Html.ActionLink("Display", "DisplayUsers")
+    </td>
+    </tr>
+    }
+</table>

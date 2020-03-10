@@ -1,0 +1,59 @@
+﻿@model MobileShopping.Models.SignUpModel
+
+@{
+    ViewBag.Title = "EditUser";
+}
+
+<h2>EditUser</h2>
+@using (Html.BeginForm("EditUser", "Account", FormMethod.Post))
+{
+    <div class="SignUpPage">
+        <h2 style="text-align:center;">SignUp</h2>
+        <table class="SignUpTble" align="center">
+            <tr>
+                <td>@Html.LabelFor(model => model.UserName, null, new { @class = "LblSignUp" })</td>
+                <td>@Html.TextBoxFor(model => model.UserName, null, new { @class = "TxtSignUp" })</td>
+                <td style="color:red">
+                    @Html.ValidationMessageFor(model => model.UserName, "")
+                </td>
+                <td><lable></lable></td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Gender, null, new { @class = "LblSignUp" })</td>
+                <td>
+                    @Html.RadioButtonFor(m => m.Gender, "Male", new { @class = "TxtSignUpGender" })M
+                    @Html.RadioButtonFor(m => m.Gender, "Female", new { @class = "TxtSignUpGender" })F
+                    @Html.RadioButtonFor(m => m.Gender, "Other", new { @class = "TxtSignUpGender" })Others
+                </td>
+                <td style="color:red">@Html.ValidationMessageFor(model => model.Gender)</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.Age, null, new { @class = "LblSignUp" })</td>
+                <td>@Html.TextBoxFor(model => model.Age, null, new { @class = "TxtSignUp" })</td>
+                <td style="color:red">@Html.ValidationMessageFor(model => model.Age)</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.MobileNo, null, new { @class = "LblSignUp" })</td>
+                <td>@Html.TextBoxFor(model => model.MobileNo, null, new { @class = "TxtSignUp" })</td>
+                <td style="color:red">@Html.ValidationMessageFor(model => model.MobileNo)</td>
+            </tr>
+            <tr>
+                <td> @Html.LabelFor(model => model.City, null, new { @class = "LblSignUp" })</td>
+                <td>
+                    @Html.DropDownList("City", new List<SelectListItem>
+           {
+                 new SelectListItem{Text="Chennai",Value="1"},
+                 new SelectListItem{Text="Coimbatore",Value="2"},
+                 new SelectListItem{Text="Madurai",Value="3"},
+           }, "Select city", new { @class = "TxtSignUp" })
+                </td>
+                <td style="color:red">@Html.ValidationMessageFor(model => model.City)</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Update" class="SignUpBtn" /></td>
+                <td><a href="~/Views/Account/SignUp.cshtml">Back</a></td>
+            </tr>
+        </table>
+    </div>
+}
+

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/UserStyleSheet.css" rel="stylesheet" />
+</head>
+<body class="Section">
+    <div class="nav-bar-top">
+        <ul class="nav-bar-list">
+            @*<li class="list">@Html.ActionLink("SignUp", "SignUp", "Account",null,new {@class = "actions"})</li>*@
+            <li class="list">@Html.ActionLink("Login", "Login", "Account",null,new { @class = "actions"})</li>
+            <li class="list">@Html.ActionLink("User details","UserDetails","Account",null,new { @class = "actions" })</li>
+            <li class="list">@Html.ActionLink("Display", "Display", "Mobile",null,new { @class = "DisplayAction"})</li>
+        
+        </ul>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

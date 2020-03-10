@@ -15,6 +15,7 @@
     <tr>
         <th>@Html.Label("Brand Name")</th>
         <th>@Html.Label("Model")</th>
+        <th>@Html.Hidden("Id")</th>
         <th>@Html.Label("BatteryCapacity")</th>
         <th>@Html.Label("DisplaySize")</th>
         <th>@Html.Label("Pixel")</th>
@@ -31,6 +32,7 @@
 <tr>
     <td>@mobile.BrandName</td>
     <td>@mobile.MobileModel</td>
+    <td>@mobile.Id</td>
     <td>@mobile.BatteryCapacity</td>
     <td>@mobile.DisplaySize</td>
     <td>@mobile.Pixel</td>

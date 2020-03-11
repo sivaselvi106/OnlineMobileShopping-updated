@@ -11,7 +11,6 @@ namespace MobileShopping.Models
         [Required]
         public string BrandName { get; set; }
         [Required]
-       
         public int Id { get; set; }
         [Required]
         public string MobileModel { get; set; }

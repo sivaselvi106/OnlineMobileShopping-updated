@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MobileShopping.Entity.Mobile>
+﻿@*@model IEnumerable<MobileShopping.Entity.Mobile>*@
 
 @{
     ViewBag.Title = "Display";
@@ -15,7 +15,7 @@
     <tr>
         <th>@Html.Label("Brand Name")</th>
         <th>@Html.Label("Model")</th>
-        <th>@Html.Hidden("Id")</th>
+        <th>@Html.Label("Id")</th>
         <th>@Html.Label("BatteryCapacity")</th>
         <th>@Html.Label("DisplaySize")</th>
         <th>@Html.Label("Pixel")</th>
@@ -43,8 +43,8 @@
     <td>@mobile.Color</td>
     <td>@mobile.Price</td>
     <td>
-        @Html.ActionLink("Edit /", "Edit")
-        @Html.ActionLink("Delete", "Delete")
+        @Html.ActionLink("Edit /", "Edit",new { id = mobile.Id })
+        @Html.ActionLink("Delete", "Delete",new { id = mobile.Id })
     </td>
 </tr>
     }

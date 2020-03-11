@@ -70,7 +70,7 @@ namespace MobileShopping.Controllers
                 mobile.Slimness = mobileViewModel.Slimness;
                 mobile.Storage = mobileViewModel.Storage;
                 mobileBL.UpdateMobile(mobile);
-                return View("Display");
+                return RedirectToAction("Display");
             }
             else
             {
@@ -81,7 +81,7 @@ namespace MobileShopping.Controllers
         public ActionResult Delete(int id)
         {
             mobileBL.DeleteMobile(id);
-            return View("Display");
+            return RedirectToAction("Display");
         }
         public ActionResult Display()  
         {

@@ -31,6 +31,19 @@ namespace MobileShopping.DAL
         {
             using(AccountContext accountContext = new AccountContext())
             {
+                Mobile updateMobile = accountContext.MobileDB.Find(mobile.Id);
+                updateMobile.BrandName = mobile.BrandName;
+                //updateMobile.Id =mobile.Id;
+                updateMobile.BatteryCapacity = mobile.BatteryCapacity;
+                updateMobile.Color = mobile.Color;
+                updateMobile.DisplaySize= mobile.DisplaySize;
+                updateMobile.MobileModel = mobile.MobileModel;
+                updateMobile.Pixel =  mobile.Pixel ;
+                updateMobile.Price= mobile.Price ;
+                updateMobile.Processor =  mobile.Processor;
+                updateMobile.RAM = mobile.RAM ;
+                updateMobile.Slimness= mobile.Slimness;
+                updateMobile.Storage = mobile.Storage;
                 accountContext.SaveChanges();
             }
         }

@@ -12,26 +12,26 @@ namespace MobileShopping.DAL
     {
         public void Create(Mobile mobile)
         {
-            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                accountContext.MobileDB.Add(mobile);
-                accountContext.SaveChanges();
+                context.MobileDB.Add(mobile);
+                context.SaveChanges();
             }
         }
         public Mobile GetMobileId(int mobileId)
         {
-            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-               Mobile mobile =  accountContext.MobileDB.Find(mobileId);
+               Mobile mobile =  context.MobileDB.Find(mobileId);
                 return mobile;
             }
            // return mobiles.Find(id => id.Id == mobileId);
         }
         public void UpdateMobile(Mobile mobile)
         {
-            using(OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
+            using(OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                Mobile updateMobile = accountContext.MobileDB.Find(mobile.Id);
+                Mobile updateMobile = context.MobileDB.Find(mobile.Id);
                 updateMobile.BrandName = mobile.BrandName;
                 //updateMobile.Id =mobile.Id;
                 updateMobile.BatteryCapacity = mobile.BatteryCapacity;
@@ -44,23 +44,23 @@ namespace MobileShopping.DAL
                 updateMobile.RAM = mobile.RAM ;
                 updateMobile.Slimness= mobile.Slimness;
                 updateMobile.Storage = mobile.Storage;
-                accountContext.SaveChanges();
+                context.SaveChanges();
             }
         }
         public void DeleteMobile(int id)
         {
-            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                Mobile mobile = accountContext.MobileDB.Find(id);
-                accountContext.MobileDB.Remove(mobile);
-                accountContext.SaveChanges();
+                Mobile mobile = context.MobileDB.Find(id);
+                context.MobileDB.Remove(mobile);
+                context.SaveChanges();
             }
         }
         public IEnumerable<Mobile> DisplayMobile()
         {
-            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                IEnumerable<Mobile> mobile =accountContext.MobileDB.ToList();
+                IEnumerable<Mobile> mobile =context.MobileDB.ToList();
                 return mobile;
             }
         }

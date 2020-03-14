@@ -12,5 +12,6 @@ namespace MobileShopping.Entity
         [Key]
         public int Id { get; set; }
         public string BrandName { get; set; }
+        public IEnumerable<Mobile> Mobiles { get; set; }
     }
 }

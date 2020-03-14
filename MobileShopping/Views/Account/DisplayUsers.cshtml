@@ -6,10 +6,10 @@
 
 @Html.ActionLink("Display users", "Display")
 
-<div class="displayUsers">
+<div class="displayUsers" >
     <h2>User details</h2><hr />
-    <> class="displayTable" align="center">
-    <table>
+    
+    <table class="displayTable" align="center" border="1">
         <tr>
             <td> @Html.DisplayNameFor(model => model.UserName)</td>
             <td>@Html.DisplayFor(model => model.UserName)</td>

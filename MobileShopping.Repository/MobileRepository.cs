@@ -12,7 +12,7 @@ namespace MobileShopping.DAL
     {
         public void Create(Mobile mobile)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
             {
                 accountContext.MobileDB.Add(mobile);
                 accountContext.SaveChanges();
@@ -20,7 +20,7 @@ namespace MobileShopping.DAL
         }
         public Mobile GetMobileId(int mobileId)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
             {
                Mobile mobile =  accountContext.MobileDB.Find(mobileId);
                 return mobile;
@@ -29,7 +29,7 @@ namespace MobileShopping.DAL
         }
         public void UpdateMobile(Mobile mobile)
         {
-            using(AccountContext accountContext = new AccountContext())
+            using(OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
             {
                 Mobile updateMobile = accountContext.MobileDB.Find(mobile.Id);
                 updateMobile.BrandName = mobile.BrandName;
@@ -49,7 +49,7 @@ namespace MobileShopping.DAL
         }
         public void DeleteMobile(int id)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
             {
                 Mobile mobile = accountContext.MobileDB.Find(id);
                 accountContext.MobileDB.Remove(mobile);
@@ -58,7 +58,7 @@ namespace MobileShopping.DAL
         }
         public IEnumerable<Mobile> DisplayMobile()
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext accountContext = new OnlineMobileShoppingContext())
             {
                 IEnumerable<Mobile> mobile =accountContext.MobileDB.ToList();
                 return mobile;

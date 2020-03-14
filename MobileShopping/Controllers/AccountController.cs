@@ -2,10 +2,9 @@
 using MobileShopping.Entity;
 using MobileShopping.DAL;
 using MobileShopping.Models;
-using System;
 using MobileShopping.BL;
 using System.Collections.Generic;
-using System.Linq;
+using AutoMapper;
 
 namespace MobileShopping.Controllers
 {
@@ -28,18 +27,24 @@ namespace MobileShopping.Controllers
         {
             if (ModelState.IsValid)
             {
-                Account account = new Account();
-                account.UserName = signUpModel.UserName;
-                account.UserId = signUpModel.UserId;
-                account.MailId = signUpModel.MailId;
-                account.Password = signUpModel.Password;
-                account.MobileNo = signUpModel.MobileNo;
-                account.CreateDate = DateTime.Now;
-                account.UpdatedDate = DateTime.Now;
-                account.LastLoginTime = DateTime.Now;
-                account.Gender = signUpModel.Gender;
-                account.Age = signUpModel.Age;
-                account.City = signUpModel.City;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<SignUpModel, Account>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var account = mapper.Map<SignUpModel, Account>(signUpModel);
+                //Account account = new Account();
+                //account.UserName = signUpModel.UserName;
+                //account.UserId = signUpModel.UserId;
+                //account.MailId = signUpModel.MailId;
+                //account.Password = signUpModel.Password;
+                //account.MobileNo = signUpModel.MobileNo;
+                //account.CreateDate = DateTime.Now;
+                //account.UpdatedDate = DateTime.Now;
+                //account.LastLoginTime = DateTime.Now;
+                //account.Gender = signUpModel.Gender;
+                //account.Age = signUpModel.Age;
+                //account.City = signUpModel.City;
                 accountBL.SignUp(account);
                 ViewBag.Message = "Successfully registered";
                 ModelState.Clear();
@@ -59,9 +64,15 @@ namespace MobileShopping.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel loginModel)
         {
-            Account user = new Account();
-            user.MailId = loginModel.MailId;
-            user.Password = loginModel.Password;
+            var config = new MapperConfiguration(mapping =>
+            {
+                mapping.CreateMap<LoginModel, Account>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var user = mapper.Map<LoginModel, Account>(loginModel);
+            //Account user = new Account();
+            //user.MailId = loginModel.MailId;
+            //user.Password = loginModel.Password;
             var result = accountBL.Login(user);
             if (result != null)
             {
@@ -98,12 +109,7 @@ namespace MobileShopping.Controllers
             account.MailId = accountDeleteViewModel.MailId;
             accountBL.DeleteUser(account);
             return RedirectToAction(nameof(UserDetails));
-            //  AccountContext accountContext = new AccountContext();
-            //Account user = accountContext.AccountDB.Find(userId);
-            //accountContext.AccountDB.Remove(user);
-            //accountContext.SaveChanges();
-            //TempData["Message"] = "User updated successfully";
-            //return RedirectToAction("Display");
+            
         }
     }
 }

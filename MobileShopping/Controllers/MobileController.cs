@@ -7,6 +7,7 @@ using MobileShopping.BL;
 using MobileShopping.DAL;
 using MobileShopping.Entity;
 using MobileShopping.Models;
+using AutoMapper;
 
 namespace MobileShopping.Controllers
 {
@@ -22,19 +23,25 @@ namespace MobileShopping.Controllers
         {
             if (ModelState.IsValid)
             {
-                Mobile mobile = new Mobile();
-                mobile.BrandName = mobileViewModel.BrandName;
-                mobile.Id = mobileViewModel.Id;
-                mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
-                mobile.Color = mobileViewModel.Color;
-                mobile.DisplaySize = mobileViewModel.DisplaySize;
-                mobile.MobileModel = mobileViewModel.MobileModel;
-                mobile.Pixel = mobileViewModel.Pixel;
-                mobile.Price = mobileViewModel.Price;
-                mobile.Processor = mobileViewModel.Processor;
-                mobile.RAM = mobileViewModel.RAM;
-                mobile.Slimness = mobileViewModel.Slimness;
-                mobile.Storage = mobileViewModel.Storage;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<MobileViewModel, Mobile>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var mobile = mapper.Map<MobileViewModel, Mobile>(mobileViewModel);
+                //Mobile mobile = new Mobile();
+                //mobile.BrandName = mobileViewModel.BrandName;
+                //mobile.Id = mobileViewModel.Id;
+                //mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
+                //mobile.Color = mobileViewModel.Color;
+                //mobile.DisplaySize = mobileViewModel.DisplaySize;
+                //mobile.MobileModel = mobileViewModel.MobileModel;
+                //mobile.Pixel = mobileViewModel.Pixel;
+                //mobile.Price = mobileViewModel.Price;
+                //mobile.Processor = mobileViewModel.Processor;
+                //mobile.RAM = mobileViewModel.RAM;
+                //mobile.Slimness = mobileViewModel.Slimness;
+                //mobile.Storage = mobileViewModel.Storage;
                 mobileBL.CreateMobile(mobile);
                 ViewBag.Message = "Mobile details added";
                 ModelState.Clear();
@@ -56,19 +63,25 @@ namespace MobileShopping.Controllers
         {
             if (ModelState.IsValid)
             {
-                Mobile mobile = new Mobile();
-                mobile.BrandName = mobileViewModel.BrandName;
-                mobile.Id = mobileViewModel.Id;
-                mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
-                mobile.Color = mobileViewModel.Color;
-                mobile.DisplaySize = mobileViewModel.DisplaySize;
-                mobile.MobileModel = mobileViewModel.MobileModel;
-                mobile.Pixel = mobileViewModel.Pixel;
-                mobile.Price = mobileViewModel.Price;
-                mobile.Processor = mobileViewModel.Processor;
-                mobile.RAM = mobileViewModel.RAM;
-                mobile.Slimness = mobileViewModel.Slimness;
-                mobile.Storage = mobileViewModel.Storage;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<MobileViewModel, Mobile>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var mobile = mapper.Map<MobileViewModel, Mobile>(mobileViewModel);
+                //Mobile mobile = new Mobile();
+                //mobile.BrandName = mobileViewModel.BrandName;
+                //mobile.Id = mobileViewModel.Id;
+                //mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
+                //mobile.Color = mobileViewModel.Color;
+                //mobile.DisplaySize = mobileViewModel.DisplaySize;
+                //mobile.MobileModel = mobileViewModel.MobileModel;
+                //mobile.Pixel = mobileViewModel.Pixel;
+                //mobile.Price = mobileViewModel.Price;
+                //mobile.Processor = mobileViewModel.Processor;
+                //mobile.RAM = mobileViewModel.RAM;
+                //mobile.Slimness = mobileViewModel.Slimness;
+                //mobile.Storage = mobileViewModel.Storage;
                 mobileBL.UpdateMobile(mobile);
                 return RedirectToAction("Display");
             }
@@ -83,69 +96,10 @@ namespace MobileShopping.Controllers
             mobileBL.DeleteMobile(id);
             return RedirectToAction("Display");
         }
-        public ActionResult Display()  
+        public ActionResult Display()
         {
-            IEnumerable<Mobile> list=mobileBL.DisplayDetails();
+            IEnumerable<Mobile> list = mobileBL.DisplayDetails();
             return View(list);
         }
-        //[HttpGet]
-        //[ActionName("Create")]
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
-        ////public ActionResult Create(Mobile mobile)
-        ////{
-        ////    mobileRepository.AddMobile(mobile);
-        ////    TempData["Message"] = "Mobile added successfully!!!";
-        ////    return RedirectToAction("Display");
-        ////}
-        ////public ActionResult Create_Post()
-        ////{
-        ////    if (ModelState.IsValid)
-        ////    {
-        ////        Mobile mobile = new Mobile();
-        ////        UpdateModel(mobile);
-        ////        mobileRepository.AddMobile(mobile);
-        ////        TempData["Message"] = "Mobile added successfully!!!";
-        ////        return RedirectToAction("Display");
-        ////    }
-        ////    return View();
-        ////}
-        //[HttpPost]
-        //[ActionName("Create")]
-        //public ActionResult Create_Post()
-        //{
-        //    Mobile mobile = new Mobile();
-        //    TryUpdateModel(mobile);
-        //    if (ModelState.IsValid)
-        //    {
-        //        mobileRepository.AddMobile(mobile);
-        //        TempData["Message"] = "Mobile added successfully!!!";
-        //        return RedirectToAction("Display");
-        //    }
-        //    return View();
-        //}
-
-        //public ActionResult Delete(int id)
-        //{
-        //    mobileRepository.DeleteMobile(id);
-        //    TempData["Message"] = "Mobile deleted successfully";
-        //    return RedirectToAction("Display");
-        //}
-
-        //public ActionResult Edit(int id)
-        //{
-        //    Mobile mobile = mobileRepository.GetMobileId(id);
-        //    return View(mobile);
-        //}
-        //[HttpPost]
-        //public ActionResult Update(Mobile mobile)
-        //{
-        //    mobileRepository.UpdateMobile(mobile);
-        //    TempData["Message"] = "Updated successfully";
-        //    return RedirectToAction("Display");
-        //}
-
     }
 }

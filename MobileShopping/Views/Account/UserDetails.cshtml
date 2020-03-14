@@ -8,14 +8,15 @@
     @Html.Label((string)TempData["Message"]);
 }
 <br/>*@
-<table>
+<table align="center" border="1">
     <tr>
-    <th> @Html.DisplayNameFor(model => model.UserName)</th>
-    <th> @Html.DisplayNameFor(model => model.MailId)</th>
-    <th> @Html.DisplayNameFor(model => model.Gender)</th>
-    <th> @Html.DisplayNameFor(model => model.Age)</th>
-    <th> @Html.DisplayNameFor(model => model.MobileNo)</th>
-    <th> @Html.DisplayNameFor(model => model.City)</th>
+        <th> @Html.DisplayNameFor(model => model.UserName)</th>
+        <th> @Html.DisplayNameFor(model => model.MailId)</th>
+        <th> @Html.DisplayNameFor(model => model.Gender)</th>
+        <th> @Html.DisplayNameFor(model => model.Age)</th>
+        <th> @Html.DisplayNameFor(model => model.MobileNo)</th>
+        <th> @Html.DisplayNameFor(model => model.City)</th>
+        <th>@Html.Label("Action")</th>
     </tr>
     @foreach(var user in Model)
     {
@@ -29,7 +30,6 @@
     <td>
         @Html.ActionLink("Edit", "EditUser") |
         @Html.ActionLink("Delete", "DeleteUser")|
-        @Html.ActionLink("Display", "DisplayUsers")
     </td>
     </tr>
     }

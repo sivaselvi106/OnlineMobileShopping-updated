@@ -8,44 +8,44 @@ using MobileShopping.Entity;
 
 namespace MobileShopping.DAL
 {
-    public class AccountContext : DbContext
+    public class OnlineMobileShoppingContext : DbContext
     {
         public DbSet<Account> AccountDB { get; set; }
         public DbSet<Mobile> MobileDB { get; set; }
-
+        public DbSet<Brand> BrandDB { get; set; }
     }
     public class AccountRepository
     {
         public void SignUp(Account user)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                accountContext.AccountDB.Add(user);
-                accountContext.SaveChanges();
+                context.AccountDB.Add(user);
+                context.SaveChanges();
             }
         }
 
         public IEnumerable<Account> DisplayUsers()
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                List<Account> user = accountContext.AccountDB.ToList();
+                List<Account> user = context.AccountDB.ToList();
                 return user;
             }
         }
         public Account Login(Account account)
         {
-            AccountContext accountContext = new AccountContext();
-            var result = accountContext.AccountDB.Where(user => user.MailId == account.MailId && user.Password == account.Password).FirstOrDefault();
+            OnlineMobileShoppingContext context = new OnlineMobileShoppingContext();
+            var result = context.AccountDB.Where(user => user.MailId == account.MailId && user.Password == account.Password).FirstOrDefault();
             return result;
         }
 
         public IEnumerable<Account> GetUserDetails(Account user)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
                 //Account account = GetUserId(user.MailId);
-                var result = accountContext.AccountDB.Where(Value => Value.MailId == user.MailId);
+                var result = context.AccountDB.Where(Value => Value.MailId == user.MailId);
                 return result;
             }
 
@@ -53,7 +53,7 @@ namespace MobileShopping.DAL
 
         public void UpdateUser(Account user)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
                 Account updateUser = GetUserId(user.MailId);
                 updateUser.UserName = user.UserName;
@@ -65,22 +65,22 @@ namespace MobileShopping.DAL
                 updateUser.Gender = user.Gender;
                 updateUser.City = user.City;
                 updateUser.Age = user.Age;
-                accountContext.SaveChanges();
+                context.SaveChanges();
             }
         }
         public void DeleteUser(Account user)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                accountContext.AccountDB.Remove(user);
-                accountContext.SaveChanges();
+                context.AccountDB.Remove(user);
+                context.SaveChanges();
             }
         }
         public Account GetUserId(string Id)
         {
-            using (AccountContext accountContext = new AccountContext())
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                Account user = accountContext.AccountDB.Find(Id);
+                Account user = context.AccountDB.Find(Id);
                 return user;
             }
 

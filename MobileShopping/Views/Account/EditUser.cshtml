@@ -1,4 +1,4 @@
-﻿@model MobileShopping.Models.SignUpModel
+﻿@model MobileShopping.Entity.Account
 
 @{
     ViewBag.Title = "EditUser";
@@ -7,6 +7,8 @@
 <h2>EditUser</h2>
 @using (Html.BeginForm("EditUser", "Account", FormMethod.Post))
 {
+    @*@Html.HiddenFor(model=>model.UserId)
+    @Html.TextBoxFor(model=>model.UserId,new { @class="Hidden"})*@
     <div class="SignUpPage">
         <h2 style="text-align:center;">SignUp</h2>
         <table class="SignUpTble" align="center">
@@ -14,9 +16,8 @@
                 <td>@Html.LabelFor(model => model.UserName, null, new { @class = "LblSignUp" })</td>
                 <td>@Html.TextBoxFor(model => model.UserName, null, new { @class = "TxtSignUp" })</td>
                 <td style="color:red">
-                    @Html.ValidationMessageFor(model => model.UserName, "")
+                    @Html.ValidationMessageFor(model => model.UserName)
                 </td>
-                <td><lable></lable></td>
             </tr>
             <tr>
                 <td> @Html.LabelFor(model => model.Gender, null, new { @class = "LblSignUp" })</td>
@@ -51,7 +52,7 @@
             </tr>
             <tr>
                 <td><input type="submit" value="Update" class="SignUpBtn" /></td>
-                <td><a href="~/Views/Account/SignUp.cshtml">Back</a></td>
+                <td><a href="~/Views/Account/DisplayUsers.cshtml">Back</a></td>
             </tr>
         </table>
     </div>

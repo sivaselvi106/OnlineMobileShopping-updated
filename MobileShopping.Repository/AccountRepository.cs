@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MobileShopping.Entity;
 
 namespace MobileShopping.DAL
@@ -48,14 +45,13 @@ namespace MobileShopping.DAL
                 var result = context.AccountDB.Where(Value => Value.MailId == user.MailId);
                 return result;
             }
-
         }
 
         public void UpdateUser(Account user)
         {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                Account updateUser = GetUserId(user.MailId);
+                Account updateUser = context.AccountDB.Find(user.UserId);
                 updateUser.UserName = user.UserName;
                 updateUser.MailId = user.MailId;
                 updateUser.Password = user.Password;
@@ -68,19 +64,20 @@ namespace MobileShopping.DAL
                 context.SaveChanges();
             }
         }
-        public void DeleteUser(Account user)
+        public void DeleteUser(int id)
         {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
+                Account user = context.AccountDB.Find(id);
                 context.AccountDB.Remove(user);
                 context.SaveChanges();
             }
         }
-        public Account GetUserId(string Id)
+        public Account GetUserId(int userId)
         {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                Account user = context.AccountDB.Find(Id);
+                Account user = context.AccountDB.Find(userId);
                 return user;
             }
 

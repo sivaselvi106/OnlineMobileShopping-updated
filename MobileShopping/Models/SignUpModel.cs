@@ -14,7 +14,6 @@ namespace MobileShopping.Models
         public string UserName { get; set; }
 
         [Key]
-        [Required]
         public int UserId { get; set; }
 
         [Required]
@@ -41,5 +40,6 @@ namespace MobileShopping.Models
         [RegularExpression(@"^([789]\d{9})$", ErrorMessage = "Invalid Mobile Number.")]
         public long MobileNo { get; set; }
         public string City { get; set; }
+        
     }
 }

@@ -12,6 +12,7 @@ namespace MobileShopping.Models
         [RegularExpression("^[a-zA-Z][a-zA-Z\\s]+$", ErrorMessage = "Not a valid name")]
         [MinLength(4), MaxLength(25)]
         public string UserName { get; set; }
+
         public int UserId { get; set; }
         [EmailAddress]
         public string MailId { get; set; }

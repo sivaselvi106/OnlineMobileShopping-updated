@@ -1,0 +1,17 @@
+﻿@model MobileShopping.Models.BrandViewModel
+
+@{
+    ViewBag.Title = "EditBrand";
+}
+
+<h2>EditBrand</h2>
+
+@using (Html.BeginForm("EditBrand", "Brand", FormMethod.Post))
+{
+    @Html.HiddenFor(Model => Model.BrandId)
+
+    @Html.TextBoxFor(Model => Model.BrandId, new { @class = "Hidden" })
+    <div>@Html.LabelFor(model => model.BrandName)</div>
+    <div>@Html.TextBoxFor(model => model.BrandName)</div>
+    <div> <input type="submit" value="Update"</div>
+}

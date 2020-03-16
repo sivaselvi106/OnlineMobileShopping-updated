@@ -23,25 +23,25 @@ namespace MobileShopping.Controllers
         {
             if (ModelState.IsValid)
             {
-                var config = new MapperConfiguration(mapping =>
-                {
-                    mapping.CreateMap<MobileViewModel, Mobile>();
-                });
-                IMapper mapper = config.CreateMapper();
-                var mobile = mapper.Map<MobileViewModel, Mobile>(mobileViewModel);
-                //Mobile mobile = new Mobile();
-                //mobile.BrandName = mobileViewModel.BrandName;
-                //mobile.Id = mobileViewModel.Id;
-                //mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
-                //mobile.Color = mobileViewModel.Color;
-                //mobile.DisplaySize = mobileViewModel.DisplaySize;
-                //mobile.MobileModel = mobileViewModel.MobileModel;
-                //mobile.Pixel = mobileViewModel.Pixel;
-                //mobile.Price = mobileViewModel.Price;
-                //mobile.Processor = mobileViewModel.Processor;
-                //mobile.RAM = mobileViewModel.RAM;
-                //mobile.Slimness = mobileViewModel.Slimness;
-                //mobile.Storage = mobileViewModel.Storage;
+                //var config = new MapperConfiguration(mapping =>
+                //{
+                //    mapping.CreateMap<MobileViewModel, Mobile>();
+                //});
+                //IMapper mapper = config.CreateMapper();
+                //var mobile = mapper.Map<MobileViewModel, Mobile>(mobileViewModel);
+                Mobile mobile = new Mobile();
+                mobile.BrandName = mobileViewModel.BrandName;
+                mobile.Id = mobileViewModel.Id;
+                mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
+                mobile.Color = mobileViewModel.Color;
+                mobile.DisplaySize = mobileViewModel.DisplaySize;
+                mobile.MobileModel = mobileViewModel.MobileModel;
+                mobile.Pixel = mobileViewModel.Pixel;
+                mobile.Price = mobileViewModel.Price;
+                mobile.Processor = mobileViewModel.Processor;
+                mobile.RAM = mobileViewModel.RAM;
+                mobile.Slimness = mobileViewModel.Slimness;
+                mobile.Storage = mobileViewModel.Storage;
                 mobileBL.CreateMobile(mobile);
                 ViewBag.Message = "Mobile details added";
                 ModelState.Clear();
@@ -63,25 +63,25 @@ namespace MobileShopping.Controllers
         {
             if (ModelState.IsValid)
             {
-                var config = new MapperConfiguration(mapping =>
-                {
-                    mapping.CreateMap<MobileViewModel, Mobile>();
-                });
-                IMapper mapper = config.CreateMapper();
-                var mobile = mapper.Map<MobileViewModel, Mobile>(mobileViewModel);
-                //Mobile mobile = new Mobile();
-                //mobile.BrandName = mobileViewModel.BrandName;
-                //mobile.Id = mobileViewModel.Id;
-                //mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
-                //mobile.Color = mobileViewModel.Color;
-                //mobile.DisplaySize = mobileViewModel.DisplaySize;
-                //mobile.MobileModel = mobileViewModel.MobileModel;
-                //mobile.Pixel = mobileViewModel.Pixel;
-                //mobile.Price = mobileViewModel.Price;
-                //mobile.Processor = mobileViewModel.Processor;
-                //mobile.RAM = mobileViewModel.RAM;
-                //mobile.Slimness = mobileViewModel.Slimness;
-                //mobile.Storage = mobileViewModel.Storage;
+                //var config = new MapperConfiguration(mapping =>
+                //{
+                //    mapping.CreateMap<MobileViewModel, Mobile>();
+                //});
+                //IMapper mapper = config.CreateMapper();
+                //var mobile = mapper.Map<MobileViewModel, Mobile>(mobileViewModel);
+                Mobile mobile = new Mobile();
+                mobile.BrandName = mobileViewModel.BrandName;
+                mobile.Id = mobileViewModel.Id;
+                mobile.BatteryCapacity = mobileViewModel.BatteryCapacity;
+                mobile.Color = mobileViewModel.Color;
+                mobile.DisplaySize = mobileViewModel.DisplaySize;
+                mobile.MobileModel = mobileViewModel.MobileModel;
+                mobile.Pixel = mobileViewModel.Pixel;
+                mobile.Price = mobileViewModel.Price;
+                mobile.Processor = mobileViewModel.Processor;
+                mobile.RAM = mobileViewModel.RAM;
+                mobile.Slimness = mobileViewModel.Slimness;
+                mobile.Storage = mobileViewModel.Storage;
                 mobileBL.UpdateMobile(mobile);
                 return RedirectToAction("Display");
             }

@@ -15,10 +15,6 @@ namespace MobileShopping.BL
         {
             mobileRepository.Create(mobile);
         }
-        public Mobile GetMobileId(int id)
-        {
-          return mobileRepository.GetMobileId(id);
-        }
         public void UpdateMobile(Mobile mobile)
         {
             mobileRepository.UpdateMobile(mobile);
@@ -30,6 +26,10 @@ namespace MobileShopping.BL
         public IEnumerable<Mobile> DisplayDetails()
         {
             return mobileRepository.DisplayMobile();
+        }
+        public Mobile GetMobileId(int id)
+        {
+            return mobileRepository.GetMobileId(id);
         }
     }
 }

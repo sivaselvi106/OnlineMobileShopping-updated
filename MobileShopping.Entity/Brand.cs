@@ -10,8 +10,8 @@ namespace MobileShopping.Entity
     public class Brand
     {
         [Key]
-        public int Id { get; set; }
+        public int BrandId { get; set; }
         public string BrandName { get; set; }
-        public IEnumerable<Mobile> Mobiles { get; set; }
+        public ICollection<Mobile> Mobiles { get; set; }
     }
 }

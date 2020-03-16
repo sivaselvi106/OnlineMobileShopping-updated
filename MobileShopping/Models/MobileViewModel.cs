@@ -31,5 +31,6 @@ namespace MobileShopping.Models
         public string Color { get; set; }
         [Required]
         public double Price { get; set; }
+        public BrandViewModel BrandId { get; set; }
     }
 }

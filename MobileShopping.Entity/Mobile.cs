@@ -24,6 +24,7 @@ namespace MobileShopping.Entity
         public string BatteryCapacity { get; set; }
         public string Color { get; set; }
         public double Price { get; set; }
+        public Brand BrandId { get; set; }
       
     }
 }

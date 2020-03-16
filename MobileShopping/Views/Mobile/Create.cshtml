@@ -96,6 +96,12 @@
                 @Html.TextBoxFor(Model => Model.DisplaySize)
             </td>
         </tr>
+        @*<tr>
+            <td>
+                @Html.DisplayFor(Model => Model.BrandId)
+            </td>
+           <td>@Html.DropDownListFor(Model => Model.BrandId, ViewBag.Brands as IEnumerable<SelectListItem>)</td>
+        </tr>*@
         <tr>
             <td>
                 <input type="submit" value="Submit"/>

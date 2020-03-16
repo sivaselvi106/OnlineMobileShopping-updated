@@ -10,7 +10,12 @@ namespace MobileShopping.BL
 {
     public class AccountBL
     {
-        AccountRepository accountRepository = new AccountRepository();
+        AccountRepository accountRepository;
+        public AccountBL()
+        {
+
+       accountRepository = new AccountRepository();
+        }
         public void SignUp(Account user)
         {
             accountRepository.SignUp(user);
@@ -29,16 +34,16 @@ namespace MobileShopping.BL
         {
            accountRepository.UpdateUser(user);
         }
-        public void DeleteUser(Account user)
+        public void DeleteUser(int id)
         {
-            accountRepository.DeleteUser(user);
+            accountRepository.DeleteUser(id);
         }
         public IEnumerable<Account> GetUserDetail(Account account)
         {
             IEnumerable<Account> user = accountRepository.GetUserDetails(account);
             return user;
         }
-        public Account GetUserId(string id)
+        public Account GetUserId(int id)
         {
             return accountRepository.GetUserId(id);
         }

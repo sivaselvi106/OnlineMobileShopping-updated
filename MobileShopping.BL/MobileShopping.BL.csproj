@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountBL.cs" />
+    <Compile Include="BrandBL.cs" />
     <Compile Include="MobileBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

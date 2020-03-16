@@ -1,0 +1,26 @@
+﻿@model IEnumerable<MobileShopping.Entity.Brand>
+@{
+    ViewBag.Title = "DisplayBrand";
+}
+
+<h2>DisplayBrand</h2>
+
+@using (Html.BeginForm("DisplayBrand", "Brand", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.BrandId)</th>
+            <th> @Html.DisplayNameFor(model => model.BrandName)</th>
+        </tr>
+        @foreach (var brand in Model)
+        {
+    <tr>
+        <td>@Html.DisplayFor(model => brand.BrandId)</td>
+        <td>@Html.DisplayFor(model => brand.BrandName)</td>
+        <td>@Html.ActionLink("Edit", "EditBrand", "Brand") |
+            @Html.ActionLink("Delete", "DeleteBrand", "Brand")
+        </td>
+        </tr>
+        }
+    </table>
+}

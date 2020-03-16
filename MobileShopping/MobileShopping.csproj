@@ -136,12 +136,11 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BrandController.cs" />
     <Compile Include="Controllers\MobileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountDeleteViewModel.cs" />
-    <Compile Include="Models\AccountDisplayViewModel.cs" />
     <Compile Include="Models\AccountEditViewModel.cs" />
     <Compile Include="Models\BrandViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
@@ -161,6 +160,9 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\DisplayUsers.cshtml" />
     <Content Include="Views\Account\UserDetails.cshtml" />
+    <Content Include="Views\Brand\AddBrand.cshtml" />
+    <Content Include="Views\Brand\EditBrand.cshtml" />
+    <Content Include="Views\Brand\DisplayBrand.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

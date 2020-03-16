@@ -11,10 +11,10 @@ namespace MobileShopping.Models
     {
         [Key]
         [Required]
-        public int Id { get; set; }
+        public int BrandId { get; set; }
         
         [Required]
         public string BrandName { get; set; }
-        public IEnumerable<Mobile> Mobiles { get; set; }
+        public ICollection<Mobile> Mobiles { get; set; }
     }
 }

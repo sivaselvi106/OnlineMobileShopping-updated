@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,23 @@ namespace MobileShopping.DAL
                 context.SaveChanges();
             }
         }
+        public IEnumerable<Mobile> GetBrand(int brandId)
+        {
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
+            {
+                List<Mobile> result = context.MobileDB.
+                              Where(x => x.BrandId == brandId).ToList();
+                return result;
+            }
+        }
+        public IEnumerable<Mobile> DisplayMobile()
+        {
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
+            {
+                List<Mobile> mobile = context.MobileDB.Include("Brand").ToList();
+                return mobile;
+            }
+        }
         public Mobile GetMobileId(int mobileId)
         {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
@@ -32,18 +50,19 @@ namespace MobileShopping.DAL
             using(OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
                 Mobile updateMobile = context.MobileDB.Find(mobile.Id);
-                updateMobile.BrandName = mobile.BrandName;
+                context.Entry(mobile).State = EntityState.Modified;
+                // updateMobile.BrandName = mobile.BrandName;
                 //updateMobile.Id =mobile.Id;
-                updateMobile.BatteryCapacity = mobile.BatteryCapacity;
-                updateMobile.Color = mobile.Color;
-                updateMobile.DisplaySize= mobile.DisplaySize;
-                updateMobile.MobileModel = mobile.MobileModel;
-                updateMobile.Pixel =  mobile.Pixel ;
-                updateMobile.Price= mobile.Price ;
-                updateMobile.Processor =  mobile.Processor;
-                updateMobile.RAM = mobile.RAM ;
-                updateMobile.Slimness= mobile.Slimness;
-                updateMobile.Storage = mobile.Storage;
+                //updateMobile.BatteryCapacity = mobile.BatteryCapacity;
+                //updateMobile.Color = mobile.Color;
+                //updateMobile.DisplaySize= mobile.DisplaySize;
+                //updateMobile.MobileModel = mobile.MobileModel;
+                //updateMobile.Pixel =  mobile.Pixel ;
+                //updateMobile.Price= mobile.Price ;
+                //updateMobile.Processor =  mobile.Processor;
+                //updateMobile.RAM = mobile.RAM ;
+                //updateMobile.Slimness= mobile.Slimness;
+                //updateMobile.Storage = mobile.Storage;
                 context.SaveChanges();
             }
         }
@@ -54,14 +73,6 @@ namespace MobileShopping.DAL
                 Mobile mobile = context.MobileDB.Find(id);
                 context.MobileDB.Remove(mobile);
                 context.SaveChanges();
-            }
-        }
-        public IEnumerable<Mobile> DisplayMobile()
-        {
-            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
-            {
-                IEnumerable<Mobile> mobile =context.MobileDB.ToList();
-                return mobile;
             }
         }
     }

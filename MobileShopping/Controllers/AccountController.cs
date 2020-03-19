@@ -1,94 +1,116 @@
 ﻿using System.Web.Mvc;
 using MobileShopping.Entity;
-using MobileShopping.DAL;
 using MobileShopping.Models;
 using MobileShopping.BL;
 using System.Collections.Generic;
 using AutoMapper;
 using System;
+using System.Web.Security;
+using System.Web;
 
 namespace MobileShopping.Controllers
 {
     public class AccountController : Controller
     {
         AccountBL accountBL;
+     
         public AccountController()
         {
         accountBL= new AccountBL();
-
-        }
-        public ActionResult UserDetails()
-        {
-            IEnumerable<Account> list = accountBL.DisplayUsers();
-            return View(list);
+      
         }
         [HttpGet]
+      //  [AllowAnonymous]
         public ActionResult SignUp()
         {
             return View();
         }
         [HttpPost]
-        
+        [ValidateAntiForgeryToken]
+      //  [AllowAnonymous]
         public ActionResult SignUp(SignUpModel signUpModel)
         {
+            try
+            {
+
             if (ModelState.IsValid)
             {
-                //var config = new MapperConfiguration(mapping =>
-                //{
-                //    mapping.CreateMap<SignUpModel, Account>();
-                //});
-                //IMapper mapper = config.CreateMapper();
-                //var account = mapper.Map<SignUpModel, Account>(signUpModel);
-                Account account = new Account();
-                account.UserName = signUpModel.UserName;
-               // account.UserId = signUpModel.UserId;
-                account.MailId = signUpModel.MailId;
-                account.Password = signUpModel.Password;
-                account.MobileNo = signUpModel.MobileNo;
-                account.CreateDate = DateTime.Now;
-                account.UpdatedDate = DateTime.Now;
-                account.LastLoginTime = DateTime.Now;
-                account.Gender = signUpModel.Gender;
-                account.Age = signUpModel.Age;
-                account.City = signUpModel.City;
+                var config = new MapperConfiguration(mapping =>
+                {
+                    mapping.CreateMap<SignUpModel, Account>();
+                });
+                IMapper mapper = config.CreateMapper();
+                var account = mapper.Map<SignUpModel, Account>(signUpModel);
+                account.Role = "user";
                 accountBL.SignUp(account);
                 ViewBag.Message = "Successfully registered";
                 ModelState.Clear();
                 return RedirectToAction("Login");
+               // Account account = new Account();
+               // account.UserName = signUpModel.UserName;
+               //// account.UserId = signUpModel.UserId;
+               // account.MailId = signUpModel.MailId;
+               // account.Password = signUpModel.Password;
+               // account.MobileNo = signUpModel.MobileNo;
+               // account.CreateDate = DateTime.Now;
+               // account.UpdatedDate = DateTime.Now;
+               // account.LastLoginTime = DateTime.Now;
+               // account.Gender = signUpModel.Gender;
+               // account.Age = signUpModel.Age;
+               // account.City = signUpModel.City;
             }
-            else
+            }
+            catch
             {
                 ModelState.AddModelError("", "Some error occurred");
-                return View(signUpModel);
-            }
+                View("Error");
+             }
+            return View(signUpModel);
         }
         [HttpGet]
+     //   [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
+     //   [AllowAnonymous]
+
         public ActionResult Login(LoginModel loginModel)
         {
-            //var config = new MapperConfiguration(mapping =>
-            //{
-            //    mapping.CreateMap<LoginModel, Account>();
-            //});
-            //IMapper mapper = config.CreateMapper();
-            //var user = mapper.Map<LoginModel, Account>(loginModel);
-            Account user = new Account();
-            user.MailId = loginModel.MailId;
-            user.Password = loginModel.Password;
+            var config = new MapperConfiguration(mapping =>
+            {
+                mapping.CreateMap<LoginModel, Account>();
+            });
+            IMapper mapper = config.CreateMapper();
+            var user = mapper.Map<LoginModel, Account>(loginModel);
+            user.LastLoginTime = DateTime.Now;  
+            //Account user = new Account();
+            //user.MailId = loginModel.MailId;
+            //user.Password = loginModel.Password;
             var result = accountBL.Login(user);
             if (result != null)
             {
-                Session["MailId"] = result.MailId.ToString();
-                Session["Password"] = result.Password.ToString();
-                return View("DisplayUsers");
+                FormsAuthentication.SetAuthCookie(user.MailId, false);
+                var authTicket = new FormsAuthenticationTicket(1, user.MailId, DateTime.Now, DateTime.Now.AddMinutes(60), false, result.Role);
+                string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+                var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                HttpContext.Response.Cookies.Add(authCookie);
+                return RedirectToAction("Index","Home");
             }
-            ViewBag.Message = string.Format("Mail Id and password is incorrect");
+            else
+            {
+            ModelState.AddModelError("", "Invalid login credentials");
             return View(user);
+            }
         }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
 
         public ActionResult EditUser(int UserId) //Edit                             
         {
@@ -109,7 +131,7 @@ namespace MobileShopping.Controllers
                 account.MobileNo = signUpModel.MobileNo;
                // account.CreateDate = DateTime.Now;
                 account.UpdatedDate = DateTime.Now;
-                account.LastLoginTime = DateTime.Now;
+               // account.LastLoginTime = DateTime.Now;
                 account.Gender = signUpModel.Gender;
                 account.Age = signUpModel.Age;
                 account.City = signUpModel.City;
@@ -126,6 +148,11 @@ namespace MobileShopping.Controllers
         {
             accountBL.DeleteUser(id);
             return RedirectToAction("UserDetails");
+        }
+        public ActionResult UserDetails()
+        {
+            IEnumerable<Account> list = accountBL.DisplayUsers();
+            return View(list);
         }
     }
 }

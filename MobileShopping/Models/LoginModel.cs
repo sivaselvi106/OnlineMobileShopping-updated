@@ -15,5 +15,6 @@ namespace MobileShopping.Models
         [Required]
         [MinLength(8)]
         public string Password { get; set; }
+        public string Role { get; set; }
     }
 }

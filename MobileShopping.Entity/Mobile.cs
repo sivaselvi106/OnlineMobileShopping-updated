@@ -10,10 +10,10 @@ namespace MobileShopping.Entity
     public class Mobile
     {
       
-        public string BrandName { get; set; }
 
         [Key]
         public int Id { get; set; }
+        public int BrandId { get; set; }
         public string MobileModel { get; set; }
         public string Processor { get; set; }
         public string RAM { get; set; }
@@ -24,7 +24,7 @@ namespace MobileShopping.Entity
         public string BatteryCapacity { get; set; }
         public string Color { get; set; }
         public double Price { get; set; }
-        public Brand BrandId { get; set; }
+        public Brand Brands { get; set; }
       
     }
 }

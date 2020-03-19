@@ -13,7 +13,6 @@
 }
 <table border="1">
     <tr>
-        <th>@Html.Label("Brand Name")</th>
         <th>@Html.Label("Model")</th>
         <th>@Html.Label("Id")</th>
         <th>@Html.Label("BatteryCapacity")</th>
@@ -30,7 +29,6 @@
     @foreach (var mobile in Model)
     {
 <tr>
-    <td>@mobile.BrandName</td>
     <td>@mobile.MobileModel</td>
     <td>@mobile.Id</td>
     <td>@mobile.BatteryCapacity</td>

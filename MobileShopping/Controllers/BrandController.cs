@@ -9,74 +9,115 @@ namespace MobileShopping.Controllers
 {
     public class BrandController : Controller
     {
-        BrandBL brandBL = new BrandBL();
-        public ActionResult AddBrand()
+        BrandBL brandBL;
+        public BrandController()
         {
-            List<Brand> brands = brandBL.DropDown();
-            ViewBag.brands = new SelectList(brands, "BrandId", "BrandName");
+            brandBL = new BrandBL();
+        }
+        [Authorize(Roles = "Admin")]
+
+        public ActionResult AddBrand()
+        {   
             return View();
         }
         [HttpPost]
         public ActionResult AddBrand(BrandViewModel brandViewModel)
-        {
-            if (ModelState.IsValid)
+        { 
+            try
             {
-                var config = new MapperConfiguration(mapping =>
+                if (ModelState.IsValid)
                 {
-                    mapping.CreateMap<BrandViewModel, Brand>();
-                });
-                IMapper mapper = config.CreateMapper();
-                var brand = mapper.Map<BrandViewModel, Brand>(brandViewModel);
-                brandBL.CreateMobile(brand);
-                ViewBag.Message = "Brand details added";
-                List<Brand> brands = brandBL.DropDown();
-                ViewBag.brands = new SelectList(brands, "BrandId", "BrandName");
-                ModelState.Clear();
-                return RedirectToAction("");
+                    var config = new MapperConfiguration(mapping =>
+                    {
+                        mapping.CreateMap<BrandViewModel, Brand>();
+                    });
+                    IMapper mapper = config.CreateMapper();
+                    var brand = mapper.Map<BrandViewModel, Brand>(brandViewModel);
+                    brandBL.CreateBrand(brand);
+                    ViewBag.Message = "Brand details added";
+                    ModelState.Clear();
+                    return RedirectToAction(nameof(DisplayBrand));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Some error occurred");
+                    return View(brandViewModel);
+                }
             }
-            else
+            catch
             {
-                ModelState.AddModelError("", "Some error occurred");
-                return View(brandViewModel);
+                return RedirectToAction("Error", "Error");
             }
         }
-        public ActionResult EditBrand()
+        [Authorize(Roles = "Admin")]
+
+        public ActionResult EditBrand(int id)
         {
-            List<Brand> brands = brandBL.DropDown();
-            ViewBag.brands = new SelectList(brands, "BrandId", "BrandName");
-            return View();
+            try
+            {
+                Brand brands = brandBL.GetBrand(id);
+                return View(brands);
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Error");
+            }
+          
         }
         [HttpPost]
         public ActionResult UpdateBrand(BrandViewModel brandViewModel)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var config = new MapperConfiguration(mapping =>
+                if (ModelState.IsValid)
                 {
-                    mapping.CreateMap<BrandViewModel, Brand>();
-                });
-                IMapper mapper = config.CreateMapper();
-                var brand = mapper.Map<BrandViewModel, Brand>(brandViewModel);
-                brandBL.UpdateBrand(brand);
-                List<Brand> brands = brandBL.DropDown();
-                ViewBag.brands = new SelectList(brands, "BrandId", "BrandName");
-                return RedirectToAction("DisplayBrand");
+                    var config = new MapperConfiguration(mapping =>
+                    {
+                        mapping.CreateMap<BrandViewModel, Brand>();
+                    });
+                    IMapper mapper = config.CreateMapper();
+                    var brand = mapper.Map<BrandViewModel, Brand>(brandViewModel);
+                    brandBL.UpdateBrand(brand);
+                    return RedirectToAction(nameof(DisplayBrand));
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Some error occurred");
+                    return View();
+                }
             }
-            else
+            catch
             {
-                ModelState.AddModelError("", "Some error occurred");
-                return View();
+                return RedirectToAction("Error", "Error");
             }
+           
         }
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteBrand(int id)
         {
-            brandBL.DeleteBrand(id);
-            return RedirectToAction("DisplayBrand");
+            try
+            {
+                brandBL.DeleteBrand(id);
+                return RedirectToAction("DisplayBrand");
+            }
+            catch
+            {
+                return RedirectToAction("Error", "Error");
+            }
+           
         }
         public ActionResult DisplayBrand()
         {
+            try
+            {
+
             IEnumerable<Brand> list = brandBL.DisplayBrand();
             return View(list);
+            }
+            catch
+            { 
+                return RedirectToAction("Error", "Error");
+            }
         }
     }
 }

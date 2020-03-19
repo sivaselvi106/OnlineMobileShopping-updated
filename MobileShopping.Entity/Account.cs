@@ -21,5 +21,6 @@ namespace MobileShopping.Entity
         public string Gender { get; set; }
         public long MobileNo { get; set; }
         public string City { get; set; }
+        public string Role { get; set; }
     }
 }

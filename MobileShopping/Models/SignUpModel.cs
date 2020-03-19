@@ -3,9 +3,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MobileShopping.Models
 {
+    public enum UserRole
+    {
+        User,
+        Admin
+    }
     public class SignUpModel
     {
         [Required]
@@ -24,10 +30,10 @@ namespace MobileShopping.Models
         [Required]
         [MinLength(10)]
         public string Password { get; set; }
-
         public DateTime? CreateDate { get; set; }
-
+        [NotMapped]
         public DateTime? UpdatedDate { get; set; }
+        [NotMapped]
         public DateTime? LastLoginTime { get; set; }
 
         [Range(1, 100, ErrorMessage = "Age Should be min 1 and max 100")]
@@ -40,6 +46,16 @@ namespace MobileShopping.Models
         [RegularExpression(@"^([789]\d{9})$", ErrorMessage = "Invalid Mobile Number.")]
         public long MobileNo { get; set; }
         public string City { get; set; }
-        
+        public string Role
+        {
+            get
+            {
+                return UserRole.User.ToString();
+            }
+            set
+            {
+                value = UserRole.User.ToString();
+            }
+        }
     }
 }

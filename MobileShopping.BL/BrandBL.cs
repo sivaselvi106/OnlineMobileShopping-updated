@@ -6,17 +6,23 @@ namespace MobileShopping.BL
 {
     public class BrandBL
     {
-        BrandRepository brandRepository = new BrandRepository();
-        public void CreateMobile(Brand brand)
+        BrandRepository brandRepository;
+        public BrandBL()
+        {
+            brandRepository = new BrandRepository();
+        }
+        public void CreateBrand(Brand brand)
         {
             brandRepository.Create(brand);
         }
-
-        public Brand GetBrandId(int id)
+        public Brand GetMobile(int id)
         {
-            return brandRepository.GetBrandId(id);
+            return brandRepository.GetMobile(id);
         }
-
+        public IEnumerable<Brand> GetBrand()
+        {
+            return brandRepository.GetBrand();
+        }
         public void UpdateBrand(Brand brand)
         {
             brandRepository.UpdateBrand(brand);
@@ -25,15 +31,6 @@ namespace MobileShopping.BL
         public void DeleteBrand(int id)
         {
             brandRepository.DeleteBrand(id);
-        }
-        public IEnumerable<Brand> DisplayBrand()
-        {
-
-            return brandRepository.Display();
-        }
-        public List<Brand> DropDown()
-        {
-            return brandRepository.DropDownList();
         }
     }
 }

@@ -1,9 +1,7 @@
 ﻿using MobileShopping.Entity;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity;
 
 namespace MobileShopping.DAL
 {
@@ -17,34 +15,41 @@ namespace MobileShopping.DAL
                 context.SaveChanges();
             }
         }
-        public Brand GetBrandId(int id)
-        {
+        //public Brand GetBrandId(int id)
+        //{
 
+        //    using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
+        //    {
+        //        Brand brand = context.BrandDB.Find(id);
+        //        return brand;
+        //    }
+        //}
+        public IEnumerable<Brand> GetBrand()
+        {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
-                Brand brand = context.BrandDB.Find(id);
-                return brand;
+                return context.BrandDB.ToList();
             }
         }
-
+        public Brand GetMobile(int id)
+        {
+            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
+            {
+                List<Mobile> mobile = context.MobileDB.ToList();
+                Brand product = context.BrandDB.Where(key => key.BrandId == id).SingleOrDefault();
+                return product;
+            }
+        }
         public void UpdateBrand(Brand brand)
         {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
             {
                 Brand updateBrand = context.BrandDB.Find(brand);
-                updateBrand.BrandName = brand.BrandName;
+                context.Entry(brand).State = EntityState.Modified;
+                //  updateBrand.BrandName = brand.BrandName;
                 context.SaveChanges();
             }
         }
-        public IEnumerable<Brand> Display()
-        {
-            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
-            {
-                List<Brand> brand = context.BrandDB.ToList();
-                return brand;
-            }
-        }
-
         public void DeleteBrand(int id)
         {
             using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
@@ -54,14 +59,5 @@ namespace MobileShopping.DAL
                 context.SaveChanges();
             }
         }
-        public List<Brand> DropDownList()
-        {
-            using (OnlineMobileShoppingContext context = new OnlineMobileShoppingContext())
-            {
-                List<Brand> brands = context.BrandDB.ToList();
-                return brands;
-            }
-        }
-
     }
 }
